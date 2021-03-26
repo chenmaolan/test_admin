@@ -8,10 +8,10 @@ import '@virtual/windi.css';
 if (import.meta.env.DEV) {
   import('ant-design-vue/dist/antd.less');
 }
+import Antd from 'ant-design-vue';
 
 import { createApp } from 'vue';
 import App from './App.vue';
-
 import router, { setupRouter } from '/@/router';
 import { setupStore } from '/@/store';
 import { setupErrorHandle } from '/@/logics/error-handle';
@@ -31,7 +31,7 @@ import { isDevMode } from '/@/utils/env';
   const app = createApp(App);
   // Register global components
   registerGlobComp(app);
-
+  app.use(Antd);
   // Configure routing
   setupRouter(app);
 

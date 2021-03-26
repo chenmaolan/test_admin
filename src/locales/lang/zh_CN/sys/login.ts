@@ -1,6 +1,8 @@
 export default {
   backSignIn: '返回',
   signInFormTitle: '登录',
+  accountLogin: '账号登陆',
+  textLogin: '短信登陆',
   mobileSignInFormTitle: '手机登录',
   qrSignInFormTitle: '二维码登录',
   signUpFormTitle: '注册',

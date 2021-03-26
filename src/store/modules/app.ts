@@ -34,6 +34,14 @@ export default class App extends VuexModule {
   // When the window shrinks, remember some states, and restore these states when the window is restored
   private beforeMiniState: BeforeMiniState = {};
 
+  public inputPasswordErrorNum: number = localStorage.getItem('inputPasswordErrorNum')
+    ? Number(localStorage.getItem('inputPasswordErrorNum'))
+    : 0;
+
+  get getInputPasswordErrorNum() {
+    return this.inputPasswordErrorNum;
+  }
+
   get getPageLoading() {
     return this.pageLoadingState;
   }
@@ -69,6 +77,18 @@ export default class App extends VuexModule {
   commitProjectConfigState(proCfg: DeepPartial<ProjectConfig>): void {
     this.projectConfigState = deepMerge(this.projectConfigState || {}, proCfg);
     Persistent.setLocal(PROJ_CFG_KEY, this.projectConfigState);
+  }
+
+  @Mutation
+  setInputPasswordErrorNum(num?: number): void {
+    if (num !== undefined) {
+      this.inputPasswordErrorNum = num;
+    } else {
+      this.inputPasswordErrorNum++;
+    }
+    console.log(num, this.inputPasswordErrorNum, 'num------');
+
+    localStorage.setItem('inputPasswordErrorNum', this.inputPasswordErrorNum.toString());
   }
 
   @Action
