@@ -25,10 +25,10 @@ a-form.enter-x(ref="formRef" :model="formData" :rules="formRules")
     a-button(type="link"  @click="$emit('toggleTabs', 'regist')") 注册
 </template>
 <script lang="ts">
-  import { defineComponent, onMounted, reactive, ref, computed } from 'vue';
-  import { BasicDragVerify } from '/@/components/Verify/index';
-  import { CountdownInput } from '/@/components/CountDown';
-  import { getFormRule } from '../userLogin';
+  import { defineComponent, onMounted, reactive, ref, computed } from 'vue'
+  import { BasicDragVerify } from '/@/components/Verify/index'
+  import { CountdownInput } from '/@/components/CountDown'
+  import { getFormRule } from '../userLogin'
 
   export default defineComponent({
     name: 'LoginForm',
@@ -43,23 +43,23 @@ a-form.enter-x(ref="formRef" :model="formData" :rules="formRules")
         rember: true,
         autoLogin: true,
         verify: false,
-      });
-      let verifyItem: any = ref(null);
-      let verifyWidth = ref(200);
-      let formRef: any = ref(null);
-      let formRules = computed(() => getFormRule(formData, 'textLogin'));
+      })
+      let verifyItem: any = ref(null)
+      let verifyWidth = ref(200)
+      let formRef: any = ref(null)
+      let formRules = computed(() => getFormRule(formData, 'textLogin'))
       onMounted(() => {
-        verifyWidth.value = verifyItem.value.scrollWidth;
-      });
+        verifyWidth.value = verifyItem.value.scrollWidth
+      })
       function verifySuccess(successData) {
-        formData.verify = successData.isPassing;
+        formData.verify = successData.isPassing
       }
       function login() {
         // 表单验证
         formRef.value.validateFields().then((res) => {
-          console.log(res, '=======');
+          console.log(res, '=======')
           // res 返回表单数据 验证通过调用登录接口
-        });
+        })
       }
       return {
         phonePrefix: ref(0),
@@ -70,9 +70,9 @@ a-form.enter-x(ref="formRef" :model="formData" :rules="formRules")
         formRules,
         verifySuccess,
         login,
-      };
+      }
     },
-  });
+  })
 </script>
 <style scoped>
   /* .phone-box ::v-deep(.has-error .ant-select:not(.ant-select-borderless) .ant-select-selector, -has-error .ant-select:not(.ant-select-borderless) .ant-select-selector) {

@@ -4,13 +4,13 @@
   </section>
 </template>
 <script lang="ts">
-  import { computed, CSSProperties, PropType } from 'vue';
+  import { computed, CSSProperties, PropType } from 'vue'
 
-  import { defineComponent } from 'vue';
-  import { Spin } from 'ant-design-vue';
+  import { defineComponent } from 'vue'
+  import { Spin } from 'ant-design-vue'
 
-  import { SizeEnum } from '/@/enums/sizeEnum';
-  import { ThemeEnum } from '/@/enums/appEnum';
+  import { SizeEnum } from '/@/enums/sizeEnum'
+  import { ThemeEnum } from '/@/enums/appEnum'
 
   export default defineComponent({
     name: 'Loading',
@@ -24,7 +24,7 @@
         type: String as PropType<SizeEnum>,
         default: SizeEnum.LARGE,
         validator: (v: SizeEnum): boolean => {
-          return [SizeEnum.DEFAULT, SizeEnum.SMALL, SizeEnum.LARGE].includes(v);
+          return [SizeEnum.DEFAULT, SizeEnum.SMALL, SizeEnum.LARGE].includes(v)
         },
       },
       absolute: {
@@ -46,19 +46,19 @@
     setup(props) {
       const getStyle = computed(
         (): CSSProperties => {
-          const { background, theme } = props;
+          const { background, theme } = props
           const bgColor = background
             ? background
             : theme === ThemeEnum.DARK
             ? 'rgba(0, 0, 0, 0.2)'
-            : 'rgba(240, 242, 245, 0.4)';
-          return { background: bgColor };
+            : 'rgba(240, 242, 245, 0.4)'
+          return { background: bgColor }
         }
-      );
+      )
 
-      return { getStyle };
+      return { getStyle }
     },
-  });
+  })
 </script>
 <style lang="less" scoped>
   .full-loading {

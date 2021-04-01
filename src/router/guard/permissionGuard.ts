@@ -1,31 +1,31 @@
-import type { Router, RouteRecordRaw } from 'vue-router';
+import type { Router, RouteRecordRaw } from 'vue-router'
 
-import { permissionStore } from '/@/store/modules/permission';
+import { permissionStore } from '/@/store/modules/permission'
 
-import { PageEnum } from '/@/enums/pageEnum';
-import { userStore } from '/@/store/modules/user';
+import { PageEnum } from '/@/enums/pageEnum'
+import { userStore } from '/@/store/modules/user'
 
-import { PAGE_NOT_FOUND_ROUTE } from '/@/router/routes/basic';
+import { PAGE_NOT_FOUND_ROUTE } from '/@/router/routes/basic'
 
-const LOGIN_PATH = PageEnum.BASE_LOGIN;
+const LOGIN_PATH = PageEnum.BASE_LOGIN
 
-const whitePathList: PageEnum[] = [LOGIN_PATH];
+const whitePathList: PageEnum[] = [LOGIN_PATH]
 
 export function createPermissionGuard(router: Router) {
   router.beforeEach(async (to, from, next) => {
     // Jump to the 404 page after processing the login
     if (from.path === LOGIN_PATH && to.name === PAGE_NOT_FOUND_ROUTE.name) {
-      next(PageEnum.BASE_HOME);
-      return;
+      next(PageEnum.BASE_HOME)
+      return
     }
 
     // Whitelist can be directly entered
     if (whitePathList.includes(to.path as PageEnum)) {
-      next();
-      return;
+      next()
+      return
     }
 
-    const token = userStore.getTokenState;
+    const token = userStore.getTokenState
 
     // token does not exist
     if (!token) {
@@ -34,37 +34,39 @@ export function createPermissionGuard(router: Router) {
         to.meta.ignoreAuth
         // || to.name === FULL_PAGE_NOT_FOUND_ROUTE.name
       ) {
-        next();
-        return;
+        next()
+        return
       }
       // redirect login page
       const redirectData: { path: string; replace: boolean; query?: Indexable<string> } = {
         path: LOGIN_PATH,
         replace: true,
-      };
+      }
       if (to.path) {
         redirectData.query = {
           ...redirectData.query,
           redirect: to.path,
-        };
+        }
       }
-      next(redirectData);
-      return;
+      next(redirectData)
+      return
     }
     if (permissionStore.getIsDynamicAddedRouteState) {
-      next();
-      return;
+      next()
+      return
     }
-    const routes = await permissionStore.buildRoutesAction();
+
+    const routes = await permissionStore.buildRoutesAction()
+    console.log(routes, 'route--------')
 
     routes.forEach((route) => {
-      router.addRoute((route as unknown) as RouteRecordRaw);
-    });
+      router.addRoute((route as unknown) as RouteRecordRaw)
+    })
 
-    const redirectPath = (from.query.redirect || to.path) as string;
-    const redirect = decodeURIComponent(redirectPath);
-    const nextData = to.path === redirect ? { ...to, replace: true } : { path: redirect };
-    permissionStore.commitDynamicAddedRouteState(true);
-    next(nextData);
-  });
+    const redirectPath = (from.query.redirect || to.path) as string
+    const redirect = decodeURIComponent(redirectPath)
+    const nextData = to.path === redirect ? { ...to, replace: true } : { path: redirect }
+    permissionStore.commitDynamicAddedRouteState(true)
+    next(nextData)
+  })
 }
