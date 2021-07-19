@@ -7,7 +7,6 @@ import { PageEnum } from '/@/enums/pageEnum'
 import { t } from '/@/hooks/web/useI18n'
 
 const modules = import.meta.globEager('./modules/**/*.ts')
-console.log(modules, 'router--modules------')
 
 const routeModuleList: AppRouteModule[] = []
 

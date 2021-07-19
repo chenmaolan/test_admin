@@ -36,7 +36,7 @@ export interface RouteMeta {
   // Carrying parameters 如果该路由会携带参数，且需要在tab页上面显示。则需要设置为true
   carryParam?: boolean
 
-  // Used internally to mark single-level menus
+  // Used internally to mark single-level menus 用于内部标记单级菜单
   single?: boolean
 
   // Currently active menu 当前激活的菜单。用于配置详情页时左侧激活的菜单路径

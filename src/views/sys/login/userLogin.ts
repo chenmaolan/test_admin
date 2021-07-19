@@ -115,12 +115,10 @@ export function getFormRule(formData, formType: formType) {
 }
 
 export function setRememberMe(status): void {
-  console.log(status, 'setRememberMe---statusstatusstatusstatus')
   userStore.commitRememberMe(status)
 }
 
 export function setAutoLogin(status): void {
-  console.log(status, 'setAutoLogin---statusstatusstatusstatus')
   userStore.commitAutoLogin(status)
 }
 

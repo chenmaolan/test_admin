@@ -1,21 +1,21 @@
 <template lang="pug">
-a-form.enter-x(ref="formRef" :model="formData" :rules="formRules")
-  a-form-item.enter-x(name="account")
-    a-input(v-model:value="formData.account" size="large" placeholder="请输入手机号")
-  a-form-item.enter-x(name="password")
-    a-input-password(v-model:value="formData.password" size="large" placeholder="请输入密码")
-  a-form-item.enter-x(name="verify" v-show="inputPasswordErrorNum >= 2")
-    div(ref="verifyItem")
-      BasicDragVerify(:width="verifyWidth" @success="verifySuccess")
+a-form.enter-x(ref='formRef', :model='formData', :rules='formRules')
+  a-form-item.enter-x(name='account')
+    a-input(v-model:value='formData.account', size='large', placeholder='请输入手机号')
+  a-form-item.enter-x(name='password')
+    a-input-password(v-model:value='formData.password', size='large', placeholder='请输入密码')
+  a-form-item.enter-x(name='verify', v-show='inputPasswordErrorNum >= 2')
+    div(ref='verifyItem')
+      BasicDragVerify(:width='verifyWidth', @success='verifySuccess')
   a-form-item.enter-x
-    a-checkbox(v-model:checked="formData.rember") 记住我
-    a-checkbox(v-model:checked="formData.autoLogin") 自动登录
+    a-checkbox(v-model:checked='formData.rember') 记住我
+    a-checkbox(v-model:checked='formData.autoLogin') 自动登录
   a-form-item.enter-x
-    a-button(type="primary" size="large" block @click="handleLogin" :loading="loading") 登录
+    a-button(type='primary', size='large', block, @click='handleLogin', :loading='loading') 登录
   a-form-item.enter-x.text-right
-    a-button(type="link" @click="$emit('toggleTabs', 'forget')") 忘记密码
+    a-button(type='link', @click='$emit("toggleTabs", "forget")') 忘记密码
     span.mr-3.ml-3 |
-    a-button(type="link"  @click="$emit('toggleTabs', 'regist')") 注册
+    a-button(type='link', @click='$emit("toggleTabs", "regist")') 注册
 </template>
 <script lang="ts">
   import { defineComponent, reactive, ref, onMounted, computed, watch, nextTick } from 'vue'
@@ -36,7 +36,7 @@ a-form.enter-x(ref="formRef" :model="formData" :rules="formRules")
     },
     setup() {
       let formData = reactive({
-        account: '18959257879',
+        account: '18955555555',
         password: 'test123456',
         verify: false, // 输入两次错误进行拖动校验
         rember: ref(userStore.rememberMeState),

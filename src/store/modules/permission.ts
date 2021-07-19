@@ -152,7 +152,6 @@ class Permission extends VuexModule {
     // role permissions
     if (permissionMode === PermissionModeEnum.ROLE) {
       routes = filterAsyncRouter(asyncRoutes, userAccessList)
-      console.log(filterAsyncRouter(asyncRoutes, userAccessList), 'filterAsyncRouter')
     }
     routes.push(ERROR_LOG_ROUTE)
     return routes

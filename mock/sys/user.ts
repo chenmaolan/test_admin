@@ -39,10 +39,10 @@ function createFakeUserList() {
       userId: '3',
       username: 'Mao',
       password: 'test123456',
-      phone: '18959257879',
+      phone: '18955555555',
       email: '123456@qq.com',
-      realName: 'Maomao',
-      desc: 'Maomao--tester',
+      realName: 'MaoXiXi',
+      desc: 'MaoXiXi--tester',
       token: 'fakeToken3',
       roles: [
         {
@@ -50,7 +50,8 @@ function createFakeUserList() {
           value: 'super',
         },
       ],
-      access: [], // childrenThree
+      access: [],
+      // access: ['childrenThree'],
     },
   ]
 }
