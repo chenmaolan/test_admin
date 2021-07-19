@@ -2,16 +2,14 @@
   <Table
     :data-source="data"
     rowKey="id"
-    :columns="sortFixedColumn(tableColumnList)"
+    :columns="tableColumnList"
     :row-selection="{ selectedRowKeys: selecteds, onChange: onSelectChange }"
   />
 </template>
 
 <script lang="ts">
   import { defineComponent, ref } from 'vue'
-  import TestCom from './components/test-com.vue'
   import { Table } from 'ant-design-vue'
-  import { sortFixedColumn } from '/@/components/Table/src/hooks/useColumns'
 
   // 初始化表头
   export const initTableColumnList: any[] = [
@@ -30,7 +28,6 @@
   ]
   export default defineComponent({
     components: {
-      TestCom,
       Table,
     },
     setup() {
@@ -64,7 +61,6 @@
         data,
         tableColumnList,
         selecteds,
-        sortFixedColumn,
         onSelectChange,
       }
     },
